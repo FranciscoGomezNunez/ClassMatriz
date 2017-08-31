@@ -1,0 +1,64 @@
+//variables globales
+matriz principal;
+matriz secundaria;
+void setup ()
+{
+  size (600,600);
+  principal = new matriz(5,100,50,50,255);
+  secundaria = new matriz(5,100,200,50,255);
+}
+void draw ()
+{
+  //background(255);
+  principal.escala();
+  principal.display();
+  secundaria.escala();
+  secundaria.display();
+}
+
+class matriz
+{
+ //atributos
+ int tamano,extension,posicionx,posiciony,rangogrises;
+ 
+ //construccion clase
+ 
+ matriz(int tamano_, int extension_, int posicionx_, int posiciony_, int rangogrises_)
+ {
+   tamano = tamano_;
+   extension = extension_;
+   posicionx = posicionx_;
+   posiciony = posiciony_;
+   rangogrises = rangogrises_;
+   
+ }
+ 
+ void escala ()
+ {
+   if ((mouseX >= posicionx & mouseX <= (posicionx+extension)) & (mouseY >= posiciony & mouseY <= (posiciony+extension))) 
+  {
+  tamano = 10;
+  }
+  else {
+  tamano = 5;
+  }
+  
+ }
+ 
+ void display ()
+ {
+    fill (random(rangogrises));
+    noStroke();
+    for (int i =0; i<extension; i+=tamano)
+    {
+      for (int j =0; j<extension; j+=tamano)
+      {
+        fill (random(255));
+        rect (posicionx+i,posiciony+j,tamano,tamano);
+      }
+    }
+    
+  }
+   
+   
+ }
